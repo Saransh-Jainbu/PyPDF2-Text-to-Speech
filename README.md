@@ -1,6 +1,4 @@
 # PyPDF2-Text-to-Speech
-Certainly, considering the naming constraints, here's an adjusted repository description:
-
 
 **Description:**
 
