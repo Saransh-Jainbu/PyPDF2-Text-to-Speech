@@ -1,0 +1,49 @@
+import pyttsx3
+from PyPDF2 import PdfReader
+
+def text_to_speech(text, language='en'):
+    """
+    Convert the given text to speech using pyttsx3.
+
+    Parameters:
+        text (str): The text to be converted to speech.
+        language (str): The language code of the text. Default is 'en' for English.
+    """
+    try:
+        
+        engine = pyttsx3.init()
+        engine.setProperty('rate', 150)  
+        engine.setProperty('volume', 0.9) 
+        engine.setProperty('voice', language)
+        engine.say(text)
+        engine.runAndWait()
+
+    except Exception as e:
+        print("Error: ", str(e))
+
+
+def read_pdf(file_path):
+    """
+    Read the entire PDF and convert it to speech using pyttsx3.
+
+    Parameters:
+        file_path (str): The path to the PDF file.
+    """
+    try:
+        # Open the PDF file in read-binary mode
+        with open(file_path, 'rb') as file:
+            # Create a PDF reader object
+            pdf_reader = PdfReader(file)
+            text = ""
+            for page in pdf_reader.pages:
+                text += page.extract_text()
+
+            
+            text_to_speech(text)
+
+    except Exception as e:
+        print("Error: ", str(e))
+
+pdf_file_path = r'example.pdf'
+  # Replace 'example.pdf' with the path to your PDF file
+read_pdf(pdf_file_path)
